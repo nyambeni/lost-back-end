@@ -19,7 +19,8 @@ app.use(function (req, res, next) {
 
  app.use('/', require('./routes/register'));
  app.use('/', require('./routes/login'));
- app.use('/', require('./routes/admin'));
+ app.use('/', require('./routes/found'));
+ app.use('/', require('./routes/lost'));
  app.use('/', require('./routes/index'));
  
 
