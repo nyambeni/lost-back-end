@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const app = express();
 var cors = require('cors')
-const mysqlConn= require('./conn/con');
+const mysqlConn= require('./conn/conn');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
   });
 // api routes
 
- app.use('/', require('./routes/registration'));
+ app.use('/', require('./routes/register'));
  app.use('/', require('./routes/login'));
  app.use('/', require('./routes/admin'));
  app.use('/', require('./routes/index'));
