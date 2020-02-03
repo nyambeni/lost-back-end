@@ -6,35 +6,26 @@ const sqlconn=require('../conn/conn');
 
 
 
- 
-outer.put('/found', function(req, res){
-
-    let name =({email:req.body.email,phoneNo:req.body.name})
-     
-    var myQuery = "UPDTE client set email = ? WHERE name = ?";
+//mysqlConnection.connect((err)=>{
+   // if(!err)
+    //    console.log('DB connected')
+    //});
     
 
-    db.query (myQuery, [name], function(err, results){
-        if(err){
+    router.post ('/updt', (req,res)=>{
+    let post = ({name:req.body.name,surname:req.body.surname,idNo:req.body.idNo,email:req.body.email,phoneNo:req.body.phoneNo,address:req.body.address})
+    sqlconn.query('UPDATE client SET ?',post,function(error, results, fields) {
+        if (error) {
+         
+              res.send({message:'there are some error with with updating information'})
+          
+        }else
+         
             
-            res.send({
-                code : 400,
-                message : err
-            })
-        }else{
-            
-            console.log("results")
-            res.send({
-                data : results,
-                code : 200,
-                message : "Successful..."
-
-            })
-         }
+             res.send( {message:'Updated sucessfully'})
+      
+      });
     })
-});
-//
-
 
 
 module.exports = router ;

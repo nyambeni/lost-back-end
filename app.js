@@ -4,10 +4,33 @@ const app = express();
 var cors = require('cors')
 const mysqlConn= require('./conn/conn');
 const bodyParser = require('body-parser');
+const jwt = require ('jsonwebtoken')
 
 app.use(bodyParser.json());
 app.use(cors())
 
+app.get('/api',(req,res)=>{
+
+  res.json({message:'welcome to the api'});
+});
+
+app.post('/apip',(req,res)=>{
+ res.json({message: 'post created...'});
+});
+
+app.post('/apiL',(req,res)=>{
+  const user ={
+    name :'name', 
+    email: 'zamo@gmail.com'
+
+  }
+
+  jwt.sign({user},'secretkey',(err,token)=>{
+    res.json({
+      token
+    });
+  });
+});
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET,DELETE,OPTIONS');
