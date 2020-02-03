@@ -45,9 +45,9 @@ router.post('/found', function(req, res){
 //
 router.get('/found', function(req, res){
 
-    const item_name = req.body.item_name;
+    const name = req.body.name;
      const searchDate=req.body.searchItem;
-    var myQuery = "SELECT * FROM found_items WHERE item_name = ?";
+    var myQuery = "SELECT * FROM client WHERE name = ?";
     
 
     db.query (myQuery, [item_name], function(err, results){

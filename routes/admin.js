@@ -6,14 +6,42 @@ const sqlconn=require('../conn/conn');
 
 
 
-router.PUT('/up', (req, res)=>{
-    sqlconn.query('UPDATE `client` SET `address`=?,`phoneNo`=? where `name`=?', [req.body.adress, req.body.phoneNo, req.body.name], function (error, results, fields) {
-       if (error) throw error;
-       res.end(JSON.stringify(results));
-     });
- });
+ 
+outer.put('/found', function(req, res){
 
+    let name =({email:req.body.email,phoneNo:req.body.name})
+     
+    var myQuery = "UPDTE client set email = ? WHERE name = ?";
+    
+
+    db.query (myQuery, [name], function(err, results){
+        if(err){
+            
+            res.send({
+                code : 400,
+                message : err
+            })
+        }else{
+            
+            console.log("results")
+            res.send({
+                data : results,
+                code : 200,
+                message : "Successful..."
+
+            })
+         }
+    })
+});
+//
 
 
 
 module.exports = router ;
+
+      
+      
+          
+   
+
+  
